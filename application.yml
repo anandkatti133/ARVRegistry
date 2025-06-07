@@ -7,7 +7,7 @@ spring:
       force: true
 
   rabbitmq:
-    host: 172.16.3.163
+    host: 10.10.10.10.10.10.345
     username: arvlog
     password: arvlog
     port: 5672
