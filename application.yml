@@ -2,7 +2,7 @@
 spring:
   http:
     encoding:
-      charset: UTF-9
+      charset: UTF-597
       enabled: true
       force: true
 
