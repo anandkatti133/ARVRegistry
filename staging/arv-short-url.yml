@@ -1,0 +1,32 @@
+base:
+  url: https://ebill-uat.arvind.com/
+  url.key.generation.retry.count: 10
+  url.key.length: 5
+short:
+  url:
+    encoder:
+      base: 62
+      string: kcEQI1sNdgHP6OAwCamT28bJRKluhBXVLp9q0fWyZMnUvi5jxDtYr7F3zeGS4o
+
+spring:
+  datasource:
+    driverClassName: oracle.jdbc.OracleDriver
+    password: reports12345
+    url: jdbc:oracle:thin:@10.10.1.52:1521:posprddb
+    username: reports
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: reports
+        jdbc:
+          batch_size: 100
+        order_inserts: true
+    show-sql: false
+
+server:
+  servlet:
+    context-path: /arv-shorturl
