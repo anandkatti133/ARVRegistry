@@ -1,1 +1,86 @@
 
+spring:
+  http:
+    encoding:
+      charset: UTF-9
+      enabled: true
+      force: true
+
+  rabbitmq:
+    host: 172.16.3.163
+    username: arvlog
+    password: arvlog
+    port: 5672
+    template:
+      routing-key: arvlog-logstash
+      exchange: arvlog-logstash
+    
+  datasource:
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 1
+      maximum-pool-size: 20
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      auto-commit: true
+      connection-test-query: SELECT 1 FROM DUAL
+    initialization-mode: always
+    initialize: true
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    validationQuery: SELECT 1    
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        ddl-auto: none
+
+  cache:
+    redis:
+      use-key-prefix: true
+      cache-null-values: false
+  redis:
+    host: 172.16.3.163
+    port: 6379
+    password: arvredis
+    ssl: false
+    timeout: 120000
+    lettuce:
+      pool:
+        max-active: 3 
+        max-idle: 3
+        min-idle: 1
+        max-wait: -1ms  
+      shutdown-timeout: 200ms
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${random.uuid}
+    port: 8100
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 30
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://10.10.1.240:${eureka.instance.port}/eureka/
+      
+logging:
+  config: classpath:spring-logback.xml
+  level:
+    com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus'        
