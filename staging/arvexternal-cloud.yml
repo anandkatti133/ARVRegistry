@@ -1,0 +1,15 @@
+eureka:
+  instance:
+    port: 8100
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 30
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${eureka.instance.url}
+
+logging:
+  config: classpath:spring-logback.xml
+  level:
+    com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
