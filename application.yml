@@ -1,4 +1,4 @@
-
+Application.name:Spring boot
 spring:
   http:
     encoding:
