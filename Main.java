@@ -4,6 +4,7 @@ public class Main {
       int a=6;
  String b="ask";
  int b=6;
+int c=8;
 
     }
 }
